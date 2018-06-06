@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://baronfu.github.io">
-  <title>利用UDP 53/67/68 端口转发，实现无限流量上网 | Hexo</title>
+  <title>利用UDP 53/67/68 端口转发，实现无限流量上网 | PeteFu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
 <meta name="keywords" content="VPN,OpenVPN,SoftEther,UDP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用UDP 53&#x2F;67&#x2F;68 端口转发，实现无限流量上网">
 <meta property="og:url" content="https://baronfu.github.io/2018/06/05/利用UDP-53-67-68-端口转发，实现无限流量上网/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="PeteFu">
 <meta property="og:description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B.PNG">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA1.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA2.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA3.png">
-<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell0.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell1.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell2.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell3.png">
@@ -44,13 +44,13 @@
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn2.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn3.png">
 <meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn4.png">
-<meta property="og:updated_time" content="2018-06-06T03:14:14.782Z">
+<meta property="og:updated_time" content="2018-06-06T11:53:27.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用UDP 53&#x2F;67&#x2F;68 端口转发，实现无限流量上网">
 <meta name="twitter:description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
 <meta name="twitter:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B.PNG">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="PeteFu" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -243,7 +243,7 @@
 <p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA3.png" alt="腾讯云学生机3"></p>
 <h2 id="使用Xshell登录云服务器"><a href="#使用Xshell登录云服务器" class="headerlink" title="使用Xshell登录云服务器"></a>使用Xshell登录云服务器</h2><p>Xshell是一个要收费的远程登录工具，下载免费Xshell <a href="https://pan.baidu.com/s/1bqIe9xsqO4C9ggSwiwidmQ" target="_blank" rel="noopener">戳这里百度网盘</a>  密码：2a3a</p>
 <p>下面是登录远程云服务操作：</p>
-<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell.png" alt="Xshell"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell0.png" alt="Xshell0"></p>
 <p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell1.png" alt="Xshell1"></p>
 <p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell2.png" alt="Xshell2"></p>
 <p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell3.png" alt="Xshell3"></p>
@@ -539,10 +539,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">node.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">SS</a>
               </li>
              
@@ -576,6 +572,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">node.js</a>
               </li>
             
             <div class="clearfix"></div>
