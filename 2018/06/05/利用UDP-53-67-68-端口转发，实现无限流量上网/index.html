@@ -6,15 +6,49 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://baronfu.github.io">
-  <title>Archives: 2018/5 | Hexo</title>
+  <title>利用UDP 53/67/68 端口转发，实现无限流量上网 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://baronfu.github.io/archives/2018/05/index.html">
+  <meta name="description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
+<meta name="keywords" content="VPN,OpenVPN,SoftEther,UDP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用UDP 53&#x2F;67&#x2F;68 端口转发，实现无限流量上网">
+<meta property="og:url" content="https://baronfu.github.io/2018/06/05/利用UDP-53-67-68-端口转发，实现无限流量上网/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B.PNG">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E6%A3%80%E6%B5%8B.PNG">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA1.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA2.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA3.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell1.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell2.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell3.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether1.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether2.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether4.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether5.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether6.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE1.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE2.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE3.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE4.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE5.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE6.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE7.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE8.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE9.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE10.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn2.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn3.png">
+<meta property="og:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn4.png">
+<meta property="og:updated_time" content="2018-06-06T03:14:14.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="利用UDP 53&#x2F;67&#x2F;68 端口转发，实现无限流量上网">
+<meta name="twitter:description" content="本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用">
+<meta name="twitter:image" content="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B.PNG">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -160,152 +194,259 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-利用UDP-53-67-68-端口转发，实现无限流量上网" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-photo">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/30/My-Gallery/" class="archive-article-date">
-  	<time datetime="2018-05-30T10:50:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/30/My-Gallery/">VPS搭建SS服务器教程</a>
+    <h1 class="article-title" itemprop="name">
+      利用UDP 53/67/68 端口转发，实现无限流量上网
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/05/利用UDP-53-67-68-端口转发，实现无限流量上网/" class="archive-article-date">
+  	<time datetime="2018-06-05T02:57:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  本文将介绍一种通过绕过校园网Web认证来实现免费上网的姿势，不敢保证在所有的网络环境下此方法都适用<a id="more"></a></p>
+<h1 id="一-背景介绍"><a href="#一-背景介绍" class="headerlink" title="一.背景介绍"></a>一.背景介绍</h1><p>内地很多大学的校园网都是使用了锐捷认证客户端来认证上网的，大多数校园网存在限制上网流量，零点过后限制上网问题。当然这也是出于学校对学生管理的限制以及校园带宽小问题。</p>
+<h1 id="二-原理介绍"><a href="#二-原理介绍" class="headerlink" title="二.原理介绍"></a>二.原理介绍</h1><p>在连接到某个需要 Web 认证的热点之前，我们已经获得了一个内网 IP，此时，如果我们访问某个 HTTP 网站，网关会对这个 HTTP 响应报文劫持并篡改，302 重定向给我们一个 web 认证界面,详细原理可以<a href="http://www.ruijie.com.cn/fw/wt/36502" target="_blank" rel="noopener">戳这里</a></p>
+<p>网关（交换机）都默认放行 DHCP 和 DNS 报文，也就是 UDP53 与 UDP67/UDP 68。有些网关甚至不会报文进行检查，这也就意味着任何形式的数据包都可以顺畅通过。</p>
+<p>既然如此，我们就可以在公网搞一台服务器，然后借此来免费上网，顺便还能防止网络审计，也就是说我们只需把钱花在服务器上，就可以实现免费上网了（是不是很溜~）。</p>
+<h1 id="三-环境检测"><a href="#三-环境检测" class="headerlink" title="三.环境检测"></a>三.环境检测</h1><p>在未Web认证的情况下向一些公共DNS服务器发送DNS查询包是可以得到正确响应的（这里查询的是百度），而DNS服务器为53端口，通过UDP协议传送数据，由此可见校园网服务器在重定向的时候没有对53端口进行劫持。</p>
+<p>废话不多说，先检测网络环境是不是符合免流量上网，先不要进行Web认证(不要登蝴蝶)，打开cmd(或者Linux Terminal)，输入以下命令：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;nslookup www.baidu.com</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>我的结果如下：</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E7%AB%AF%E5%8F%A3%E6%A3%80%E6%B5%8B.PNG" alt="UPD 53端口检测"></p>
+<p>上面在没有进行 Web 认证的情况下成功查询到的 IP 地址，但是我们并无法确定网关是放行了 UDP 53 的所有数据包还是只放行了 DNS 报文。所以我们要进一步测试下！如果连这都过不了，那还是洗洗睡吧。下面提供的工具实际是测试TCP 53端口，但是如果允许 TCP，那么 UDP 也肯定没问题。</p>
+<p><a href="https://github.com/BennyThink/UDP53-Filter-Type" target="_blank" rel="noopener">项目地址</a></p>
+<p>去 Git 仓库下载源码，之后 Linux 用户运行</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;python UDP53.py</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>Windows 用户直接双击 dist 下的 udp.exe</p>
+<p>下图是 Windows 下的运行结果</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/upd53%E6%A3%80%E6%B5%8B.PNG" alt="UDP 53 检测"></p>
+<h1 id="四-实战（搭建基于UDP53的VPN）"><a href="#四-实战（搭建基于UDP53的VPN）" class="headerlink" title="四.实战（搭建基于UDP53的VPN）"></a>四.实战（搭建基于UDP53的VPN）</h1><p>接下来介绍基于UDP53端口的VPN搭建使用的工具、搭建的具体步骤以及注意的事项。</p>
+<h2 id="购买云服务器"><a href="#购买云服务器" class="headerlink" title="购买云服务器"></a>购买云服务器</h2><p>准备一台具有公网IP的云服务器，国内的云服务商（<a href="https://www.aliyun.com/" target="_blank" rel="noopener">阿里云</a>、<a href="https://cloud.tencent.com/" target="_blank" rel="noopener">腾讯云</a>、<a href="https://www.jdcloud.com/" target="_blank" rel="noopener">京东云</a> 等等），国外的云服务商（<a href="https://bwh1.net/index.php" target="_blank" rel="noopener">搬瓦工</a>、<a href="https://www.vultr.com/?ref=7311531" target="_blank" rel="noopener">Vultr</a> 等等）</p>
+<p>在这里我推荐购买国内的服务器，理由是阿里云或者腾讯云的云服务器性价比高，而且针对在校学生有学生优惠，这里我购买的是腾讯<a href="https://cloud.tencent.com/act/campus" target="_blank" rel="noopener">10RMB/月学生机</a>（可能现在的优惠价格不一样了，之前的学生优惠是1RMB/月）</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA1.png" alt="腾讯云学生机1"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA2.png" alt="腾讯云学生机2"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/%E8%85%BE%E8%AE%AF%E5%AD%A6%E7%94%9F%E6%9C%BA3.png" alt="腾讯云学生机3"></p>
+<h2 id="使用Xshell登录云服务器"><a href="#使用Xshell登录云服务器" class="headerlink" title="使用Xshell登录云服务器"></a>使用Xshell登录云服务器</h2><p>Xshell是一个要收费的远程登录工具，下载免费Xshell <a href="https://pan.baidu.com/s/1bqIe9xsqO4C9ggSwiwidmQ" target="_blank" rel="noopener">戳这里百度网盘</a>  密码：2a3a</p>
+<p>下面是登录远程云服务操作：</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell.png" alt="Xshell"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell1.png" alt="Xshell1"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell2.png" alt="Xshell2"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/Xshell3.png" alt="Xshell3"></p>
+<h2 id="安装SoftEther-VPN-Server服务"><a href="#安装SoftEther-VPN-Server服务" class="headerlink" title="安装SoftEther VPN Server服务"></a>安装SoftEther VPN Server服务</h2><p>SoftEther VPN 是日本筑波大学的一个研究项目，是一个开放源代码的跨平台多协议 VPN 程序，它包括服务器端、客户端、服务器端管理工具等数个软件，支持 SSL-VPN (SoftEtherVPN) 协议、 L2TP/IPsec 协议、 OpenVPN 协议和 Microsoft SSTP 协议，Windows、Linux、Android 和 IOS 等操作系统都可以连接到 SoftEther VPN 服务器。</p>
+<p>安装SoftEther VPN Server之前，先安装升级GCC环境，输入以下命令：</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_6_centos ~]# yum install gcc gcc-c++ make tar -y</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>下载安装linux版的SoftEther</p>
+<p>32 位系统下载，执行下面命令：</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_6_centos ~]# wget http://oks2t4o68.bkt.clouddn.com/softether-vpnserver-v4.22-9634-beta-2016.11.27-linux-x86-32bit.tar.gz</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>64 位系统下载，执行下面命令：</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_6_centos ~]# wget http://oks2t4o68.bkt.clouddn.com/softether-vpnserver-v4.22-9634-beta-2016.11.27-linux-x64-64bit.tar.gz</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>将软件包进行解压，然后进入解压后的vpnserver目录，make执行安装</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_6_centos ~]# tar -zxvf softether-vpnserver-v4.22-9634-beta-2016.11.27-linux-x64-64bit.tar.gz</span><br><span class="line">[root@VM_0_6_centos ~]# cd vpnserver/</span><br><span class="line">[root@VM_0_6_centos vpnserver]# make</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>接下来会有三次选择要求选yes还是no,都选择yes，回车就成功安装softether</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether1.png" alt="softether1"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether2.png" alt="softether2"></p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//启动softether服务</span><br><span class="line">[root@VM_0_6_centos vpnserver]# ./vpnserver start</span><br><span class="line">//进入softether命令行</span><br><span class="line">[root@VM_0_6_centos vpnserver]# ./vpncmd</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>执行./vpncmd后连续回车两次，进入softether server管理命令行，然后输入ServerPasswordSet,设置管理密码（记住这个密码，马上要用到）。</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether4.png" alt="softether4"><br><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether5.png" alt="softether5"><br><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether6.png" alt="softether6"></p>
+<h2 id="在本地远程配置softether-VPN-Server"><a href="#在本地远程配置softether-VPN-Server" class="headerlink" title="在本地远程配置softether VPN Server"></a>在本地远程配置softether VPN Server</h2><p>先在Windows系统下下载安装softether软件，<a href="https://pan.baidu.com/share/init?surl=pKTOPib" target="_blank" rel="noopener">百度网盘</a> 密码: i3e2<br>安装好以后，按以下步骤配置softether</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE1.png" alt="softether配置1"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE2.png" alt="softether配置2"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE3.png" alt="softether配置3"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE4.png" alt="softether配置4"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE5.png" alt="softether配置5"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE6.png" alt="softether配置6"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE7.png" alt="softether配置7"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE8.png" alt="softether配置8"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE9.png" alt="softether配置9"></p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/softether%E9%85%8D%E7%BD%AE10.png" alt="softether配置10"></p>
+<h2 id="安装配置openvpn客户端"><a href="#安装配置openvpn客户端" class="headerlink" title="安装配置openvpn客户端"></a>安装配置openvpn客户端</h2><p>要下载安装openvpn,<a href="http://www.softpedia.com/get/Security/Security-Related/SoftEther-VPN.shtmlhttp://" target="_blank" rel="noopener">戳这里</a></p>
+<p>把这个ovpn文件提取出来，然后放在openVPN的config目录下。</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn.png" alt="openvpn"></p>
+<p>我已经把文件名改为快连我</p>
+<p>把所有登陆校园网的账号退出。</p>
+<p>打开openVPN，右下角出现一个带锁的电脑图标。</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn2.png" alt="openvpn1"></p>
+<p>输入之前我们设置的用户的账号密码</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn3.png" alt="openvpn2"></p>
+<p>电脑图标变为绿色，打开浏览器，就可以无限上网了，拯救地球村的计划成功~，嘻嘻嘻嘻</p>
+<p><img src="http://ot69d3edf.bkt.clouddn.com/2018-06-05/png/openvpn4.png" alt="openvpn3"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻墙</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VPN</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VPS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">OpenVPN</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Vultr</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SoftEther</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/28/My-New-Post/" class="archive-article-date">
-  	<time datetime="2018-05-28T09:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/28/My-New-Post/">基于Token的WEB后台认证机制</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">node.js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">UDP</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://baronfu.github.io/2018/06/05/利用UDP-53-67-68-端口转发，实现无限流量上网/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/28/hello-world/" class="archive-article-date">
-  	<time datetime="2018-05-28T02:21:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/30/My-Gallery/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">VPS搭建SS服务器教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/28/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -328,8 +469,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
