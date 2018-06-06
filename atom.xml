@@ -44,12 +44,12 @@
   
   <entry>
     <title>VPS搭建SS服务器教程</title>
-    <link href="https://baronfu.github.io/2018/05/30/My-Gallery/"/>
-    <id>https://baronfu.github.io/2018/05/30/My-Gallery/</id>
+    <link href="https://baronfu.github.io/2018/05/30/VPS%E6%90%AD%E5%BB%BASS%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B/"/>
+    <id>https://baronfu.github.io/2018/05/30/VPS搭建SS服务器教程/</id>
     <published>2018-05-30T10:50:54.000Z</published>
-    <updated>2018-05-31T10:44:36.864Z</updated>
+    <updated>2018-06-06T15:28:51.176Z</updated>
     
-    <content type="html"><![CDATA[<p> 本文介绍如何通过购买国外的VPS服务器搭建自己的个人SS翻墙服务器<a id="more"></a></p><h1 id="国外服务器的购买"><a href="#国外服务器的购买" class="headerlink" title="国外服务器的购买"></a>国外服务器的购买</h1><p>国外的VPS服务器供应商有很多，比较有名的Vultr、SugarHosts、BandwagonHost(搬瓦工)、RAKSmart、Linode、DigitalOcean等等。</p><p>这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube720p完全无压力。</p><p>Vultr官网链接: <a href="https://www.vultr.com/?ref=7311531" target="_blank" rel="noopener">Vultr The Infrastructure Cloud™</a></p><h2 id="Vultr服务器价格"><a href="#Vultr服务器价格" class="headerlink" title="Vultr服务器价格"></a>Vultr服务器价格</h2><p>Vultr服务器按小时计费，最低配置（1CPU/512MB/500GB）0.0004美元/h,算起来2.5美元/月,且destory掉服务器是不收费的，所以不用担心如果暂时没有使用还一直扣费的问题，如下图所示：<br><img src="http://ot69d3edf.bkt.clouddn.com/34831-20160622150124531-1416052185.png" alt="Token"></p>]]></content>
+    <content type="html"><![CDATA[<p> 本文介绍如何通过购买国外的VPS服务器搭建自己的个人SS翻墙服务器<a id="more"></a></p><h1 id="国外服务器的购买"><a href="#国外服务器的购买" class="headerlink" title="国外服务器的购买"></a>国外服务器的购买</h1><p>国外的VPS服务器供应商有很多，比较有名的Vultr、SugarHosts、BandwagonHost(搬瓦工)、RAKSmart、Linode、DigitalOcean等等。</p><p>这里我选择的是Vultr，对比了很多国外的服务器，这个蛮靠谱的，且搭建成功后看youtube720p完全无压力。</p><p>Vultr官网链接: <a href="https://www.vultr.com/?ref=7311531" target="_blank" rel="noopener">Vultr The Infrastructure Cloud™</a></p><h2 id="Vultr服务器价格"><a href="#Vultr服务器价格" class="headerlink" title="Vultr服务器价格"></a>Vultr服务器价格</h2><p>Vultr服务器按小时计费，最低配置（1CPU/512MB/500GB）0.0004美元/h,算起来2.5美元/月,且destory掉服务器是不收费的，所以不用担心如果暂时没有使用还一直扣费的问题，如下图所示：<br><img src="http://ot69d3edf.bkt.clouddn.com/34831-20160622150124531-1416052185.png" alt="Token"></p><p>#还未写完，请待续~~</p>]]></content>
     
     <summary type="html">
     
@@ -91,19 +91,19 @@
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://baronfu.github.io/2018/05/28/hello-world/"/>
-    <id>https://baronfu.github.io/2018/05/28/hello-world/</id>
+    <title>我的第一篇博客</title>
+    <link href="https://baronfu.github.io/2018/05/28/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://baronfu.github.io/2018/05/28/我的第一篇博客/</id>
     <published>2018-05-28T02:21:38.000Z</published>
-    <updated>2018-05-29T09:54:44.858Z</updated>
+    <updated>2018-06-06T15:22:57.038Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="为什么要写博客"><a href="#为什么要写博客" class="headerlink" title="为什么要写博客"></a>为什么要写博客</h1><p>2017年是一个不平凡的时间段，大学的生活接近尾声，即将脱离大学生活的圈子，参加正式的社会工作，进入软件开发行业工作。在实习期间仔细品读了一些大牛的博客后发现，每个人写的博客目的和内容都尽不相同。我开始动笔主要写博客源于：</p><ul><li><strong>积累</strong>  开始积累即将在工作学习过程中踩的坑</li><li><strong>分享</strong>  分享自己在工作中学习的新技术知识</li><li><strong>激励</strong>  激励自己不断的阅读、学习、实践和创新</li><li><strong>交流</strong>  博客圈是一个充满大神的圈子</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+        &lt;h1 id=&quot;为什么要写博客&quot;&gt;&lt;a href=&quot;#为什么要写博客&quot; class=&quot;headerlink&quot; title=&quot;为什么要写博客&quot;&gt;&lt;/a&gt;为什么要写博客&lt;/h1&gt;&lt;p&gt;2017年是一个不平凡的时间段，大学的生活接近尾声，即将脱离大学生活的圈子，参加正式的社会工作，进入
       
     
     </summary>
